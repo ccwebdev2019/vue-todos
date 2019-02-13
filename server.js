@@ -29,4 +29,8 @@ app.use(function(err, req, res, next) {
   }
 });
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
 app.listen(PORT, () => console.log(`server listening on port: ${PORT}`));
