@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 connect(
-  `mongodb://carlos:cerebro2019mongodb://<dbuser>:<dbpassword>@ds133875.mlab.com:33875/heroku_2xlg8g7l/vue`,
+  `mongodb://carlos:cerebro2019mongodb@ds133875.mlab.com:33875/heroku_2xlg8g7l/vue`,
   { useNewUrlParser: true, useCreateIndex: true }
 );
 
