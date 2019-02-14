@@ -60,13 +60,13 @@ export default new Vuex.Store({
       context.commit("REMOVE_TODO", payload);
     },
     loginUser: (context, payload) => {
-      axios
+      return axios
         .post("/auth/login", payload)
         .then(response => context.commit("LOGIN_USER", response))
         .catch(e => context.commit("LOGIN_USER_ERROR", e.response));
     },
     registerUser: (context, payload) => {
-      axios
+      return axios
         .post("/auth/create", payload)
         .then(response => context.commit("REGISTER_USER", response))
         .catch(e => context.commit("REGISTER_USER_ERROR", e.response));
