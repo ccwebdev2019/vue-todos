@@ -29,7 +29,12 @@
           <router-link to="/todos" class="nav-link">Todos</router-link>
         </li>
         <li class="nav-item">
-          <span class="nav-link" style="cursor:pointer" v-on:click="logMeOutPlease">Logout</span>
+          <span
+            class="nav-link"
+            style="cursor:pointer"
+            v-on:click="logMeOutPlease"
+            >Logout</span
+          >
         </li>
       </ul>
       <ul class="navbar-nav ml-auto" v-if="!loginAuthenticated">

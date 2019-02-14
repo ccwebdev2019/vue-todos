@@ -1,14 +1,12 @@
 <template>
   <div class="container my-5">
-    <ul class="list-group" v-if="register.message">
-      <li style="list-style: none">
-        <div class="alert alert-danger" role="alert" v-if="!register.success">{{register.message}}</div>
-        <div class="alert alert-success" role="alert" v-if="register.success">{{register.message}}</div>
-      </li>
-    </ul>
     <ul class="list-group" v-if="errors.length">
-      <li style="list-style: none" v-for="(error, index) in errors" v-bind:key="index">
-        <div class="alert alert-danger" role="alert">{{error}}</div>
+      <li
+        style="list-style: none"
+        v-for="(error, index) in errors"
+        v-bind:key="index"
+      >
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
       </li>
     </ul>
     <form v-on:submit="createUser">
@@ -21,7 +19,12 @@
                 <i class="fas fa-user-circle"></i>
               </div>
             </div>
-            <input type="text" v-model="name" class="form-control" placeholder="Name">
+            <input
+              type="text"
+              v-model="name"
+              class="form-control"
+              placeholder="Name"
+            />
           </div>
         </div>
         <div class="col-sm-12">
@@ -32,7 +35,12 @@
                 <i class="fas fa-envelope"></i>
               </div>
             </div>
-            <input type="text" v-model="email" class="form-control" placeholder="Email">
+            <input
+              type="text"
+              v-model="email"
+              class="form-control"
+              placeholder="Email"
+            />
           </div>
         </div>
         <div class="col-sm-12">
@@ -43,7 +51,12 @@
                 <i class="fas fa-key"></i>
               </div>
             </div>
-            <input type="password" v-model="password" class="form-control" placeholder="Password">
+            <input
+              type="password"
+              v-model="password"
+              class="form-control"
+              placeholder="Password"
+            />
           </div>
         </div>
         <div class="col-sm-12">
@@ -96,10 +109,22 @@ export default {
         name: this.name,
         email: this.email,
         password: this.password
+      }).then(() => {
+        if (this.register.success) {
+          this.name = "";
+          this.email = "";
+          this.password = "";
+          this.flash(this.register.message, "alert alert-success", {
+            timeout: 2000,
+            importante: true
+          });
+        } else {
+          this.flash(this.register.message, "alert alert-danger", {
+            timeout: 2000,
+            importante: true
+          });
+        }
       });
-      this.name = "";
-      this.email = "";
-      this.password = "";
     }
   }
 };

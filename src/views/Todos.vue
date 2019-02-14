@@ -1,24 +1,38 @@
 <template>
   <div class="container my-5">
     <ul class="list-group" v-if="errors.length">
-      <li v-for="(error, index) in errors" v-bind:key="index" style="list-style: none">
-        <div class="alert alert-danger" role="alert">{{error}}</div>
+      <li
+        v-for="(error, index) in errors"
+        v-bind:key="index"
+        style="list-style: none"
+      >
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
       </li>
     </ul>
     <form v-on:submit="createTodo" v-if="!edit">
       <div class="form-group">
-        <input type="text" class="form-control" v-model="todo" placeholder="write your todo here">
+        <input
+          type="text"
+          class="form-control"
+          v-model="todo"
+          placeholder="write your todo here"
+        />
       </div>
       <div class="form-group">
-        <input type="submit" value="upload" class="btn btn-success">
+        <input type="submit" value="upload" class="btn btn-success" />
       </div>
     </form>
     <form v-on:submit="updateTodo" v-if="edit">
       <div class="form-group">
-        <input type="text" class="form-control" v-model="todo" placeholder="write your todo here">
+        <input
+          type="text"
+          class="form-control"
+          v-model="todo"
+          placeholder="write your todo here"
+        />
       </div>
       <div class="form-group">
-        <input type="submit" value="update" class="btn btn-primary">
+        <input type="submit" value="update" class="btn btn-primary" />
       </div>
     </form>
     <div v-if="todos.length">
@@ -29,11 +43,17 @@
           v-for="(t, index) in todos"
           v-bind:key="index"
         >
-          {{t.todo}}
-          <span class="text-info">{{t.created}}</span>
+          {{ t.todo }}
+          <span class="text-info">{{ t.created }}</span>
           <div>
-            <i class="far fa-edit mx-2 text-primary pointer" v-on:click="editTodo(t.todo, index)"></i>
-            <i class="far fa-times-circle mx-2 text-danger pointer" v-on:click="deleteTodo(index)"></i>
+            <i
+              class="far fa-edit mx-2 text-primary pointer"
+              v-on:click="editTodo(t.todo, index)"
+            ></i>
+            <i
+              class="far fa-times-circle mx-2 text-danger pointer"
+              v-on:click="deleteTodo(index)"
+            ></i>
           </div>
         </li>
       </ul>

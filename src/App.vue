@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Navigation/>
-    <router-view/>
+    <Navigation />
+    <flash-message class="container mt-5 rounded"></flash-message>
+    <router-view />
   </div>
 </template>
 

@@ -11,12 +11,6 @@ export default new Vuex.Store({
     register: { message: "", success: "" }
   },
   getters: {
-    loginMessage: state => {
-      return state.login.message;
-    },
-    loginSuccess: state => {
-      return state.login.success;
-    },
     loginAuthenticated: state => {
       return state.login.authenticated;
     }
@@ -67,17 +61,17 @@ export default new Vuex.Store({
     },
     loginUser: (context, payload) => {
       axios
-        .post("http://localhost:4000/auth/login", payload)
+        .post("/auth/login", payload)
         .then(response => context.commit("LOGIN_USER", response))
         .catch(e => context.commit("LOGIN_USER_ERROR", e.response));
     },
     registerUser: (context, payload) => {
       axios
-        .post("http://localhost:4000/auth/create", payload)
+        .post("/auth/create", payload)
         .then(response => context.commit("REGISTER_USER", response))
         .catch(e => context.commit("REGISTER_USER_ERROR", e.response));
     },
-    logUserOut: (context, payload) => {
+    logUserOut: context => {
       context.commit("LOG_USER_OUT");
     }
   }

@@ -1,9 +1,12 @@
 <template>
   <div class="container my-5">
-    <Response v-bind:response="login" v-bind:show="server"/>
     <ul class="list-group" v-if="errors.length">
-      <li style="list-style: none" v-for="(error, index) in errors" v-bind:key="index">
-        <div class="alert alert-danger" role="alert">{{error}}</div>
+      <li
+        style="list-style: none"
+        v-for="(error, index) in errors"
+        v-bind:key="index"
+      >
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
       </li>
     </ul>
     <form v-on:submit="logMeIn" novalidate>
@@ -16,7 +19,12 @@
                 <i class="fas fa-envelope"></i>
               </div>
             </div>
-            <input type="email" v-model="email" class="form-control" placeholder="Email">
+            <input
+              type="email"
+              v-model="email"
+              class="form-control"
+              placeholder="Email"
+            />
           </div>
         </div>
         <div class="col-sm-12 col-md-5">
@@ -27,7 +35,12 @@
                 <i class="fas fa-key"></i>
               </div>
             </div>
-            <input type="password" v-model="password" class="form-control" placeholder="Password">
+            <input
+              type="password"
+              v-model="password"
+              class="form-control"
+              placeholder="Password"
+            />
           </div>
         </div>
         <div class="col-sm-12 col-md-2">
@@ -39,24 +52,18 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
-import Response from "../components/Response";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "login",
-  components: {
-    Response
-  },
   data() {
     return {
       email: "",
       password: "",
-      errors: [],
-      server: false
+      errors: []
     };
   },
   computed: {
-    ...mapState(["login"]),
-    ...mapGetters(["loginSuccess"])
+    ...mapState(["login"])
   },
   methods: {
     ...mapActions(["loginUser"]),
@@ -78,21 +85,26 @@ export default {
       } else {
         this.errors = [];
       }
-      this.loginUser({ email: this.email, password: this.password });
-      this.email = "";
-      this.password = "";
-      this.server = true;
-      this.hideComponentResponse();
+      this.loginUser({ email: this.email, password: this.password }).then(() =>
+        this.loginReqRes()
+      );
     },
     hideComponentResponse: function() {
-      setTimeout(() => {
-        this.server = false;
-        if (this.loginSuccess) {
-          this.$router.push("todos");
-        }
-      }, 2500);
+      if (this.login.success) {
+        this.email = "";
+        this.password = "";
+        this.flash(this.login.message, "alert alert-success", {
+          timeout: 2000,
+          important: true
+        });
+        setTimeout(() => this.$router.push("todos"), 2000);
+      } else {
+        this.flash(this.login.message, "alert alert-danger", {
+          timeout: 2000,
+          importante: true
+        });
+      }
     }
   }
 };
 </script>
-
