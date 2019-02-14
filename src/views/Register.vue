@@ -116,12 +116,12 @@ export default {
           this.password = "";
           this.flash(this.register.message, "alert alert-success", {
             timeout: 2000,
-            importante: true
+            importante: false
           });
         } else {
           this.flash(this.register.message, "alert alert-danger", {
             timeout: 2000,
-            importante: true
+            importante: false
           });
         }
       });

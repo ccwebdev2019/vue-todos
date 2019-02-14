@@ -89,19 +89,19 @@ export default {
         this.loginReqRes()
       );
     },
-    hideComponentResponse: function() {
+    loginReqRes: function() {
       if (this.login.success) {
         this.email = "";
         this.password = "";
         this.flash(this.login.message, "alert alert-success", {
           timeout: 2000,
-          important: true
+          important: false
         });
         setTimeout(() => this.$router.push("todos"), 2000);
       } else {
         this.flash(this.login.message, "alert alert-danger", {
           timeout: 2000,
-          importante: true
+          importante: false
         });
       }
     }

@@ -5,9 +5,9 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 connect(
-  `mongodb:/${process.env.MONGO_USER}:${
+  `mongodb://${process.env.MONGO_USER}:${
     process.env.MONGO_PASS
-  }@ds133875.mlab.com:33875/heroku_2xlg8g7l/vue`,
+  }@ds133875.mlab.com:33875/heroku_2xlg8g7l`,
   { useNewUrlParser: true, useCreateIndex: true }
 );
 
