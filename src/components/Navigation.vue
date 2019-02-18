@@ -1,5 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- nav html -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <router-link to="/" class="nav-brand">Todos Web App</router-link>
     <button
       class="navbar-toggler"
@@ -50,6 +51,7 @@
 </template>
 
 <script>
+// imports
 import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   name: "navigation",
@@ -57,11 +59,13 @@ export default {
   methods: {
     ...mapActions(["logUserOut"]),
     logMeOutPlease: function() {
+      // on logout click, dispatch logUserOut action
       this.logUserOut();
     }
   },
   watch: {
     loginAuthenticated: function(auth) {
+      // if auth is false re route to login
       if (!auth) {
         this.$router.push("login");
       }
@@ -69,10 +73,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-nav {
-  background-image: linear-gradient(to right, #00cdac, #8ddad5);
-  box-shadow: 0px 0px 5px 1px #cfd9df;
-}
-</style>

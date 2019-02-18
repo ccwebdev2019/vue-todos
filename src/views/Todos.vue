@@ -1,5 +1,7 @@
 <template>
+  <!-- todos main container -->
   <div class="container my-5">
+    <!-- errors ul -->
     <ul class="list-group" v-if="errors.length">
       <li
         v-for="(error, index) in errors"
@@ -9,6 +11,7 @@
         <div class="alert alert-danger" role="alert">{{ error }}</div>
       </li>
     </ul>
+    <!-- add todos form -->
     <form v-on:submit="createTodo" v-if="!edit">
       <div class="form-group">
         <input
@@ -22,6 +25,7 @@
         <input type="submit" value="upload" class="btn btn-success" />
       </div>
     </form>
+    <!-- edit/update todo form -->
     <form v-on:submit="updateTodo" v-if="edit">
       <div class="form-group">
         <input
@@ -33,8 +37,12 @@
       </div>
       <div class="form-group">
         <input type="submit" value="update" class="btn btn-primary" />
+        <button type="button" class="btn btn-warning" v-on:click="cancelEdit">
+          cancel update
+        </button>
       </div>
     </form>
+    <!-- display todos container -->
     <div v-if="todos.length">
       <p class="lead">Your Todo List</p>
       <ul class="list-group">
@@ -62,6 +70,7 @@
 </template>
 
 <script>
+// imports
 import { mapState, mapActions } from "vuex";
 export default {
   name: "todos",
@@ -78,26 +87,36 @@ export default {
     ...mapActions(["addTodo", "editSingleTodo", "removeTodo"]),
     createTodo: function(e) {
       e.preventDefault();
+      // dont add empty todo
       if (!this.todo) {
         return this.errors.push("Write a todo then click upload");
       }
       this.errors = [];
+      // if not errors dispatch action to add a todo
       this.addTodo({ todo: this.todo, created: new Date().toLocaleString() });
+      // set todos to an empty string again
       this.todo = "";
     },
     updateTodo: function(e) {
       e.preventDefault();
+      // on click update, disptach action to update todo
       this.editSingleTodo({ t: this.todo, i: this.index });
       this.todo = "";
       this.id = "";
       this.edit = false;
     },
     editTodo: function(t, i) {
+      // on click on edit icon set todo and index properties to the respective params values and show edit form
       this.todo = t;
       this.index = i;
       this.edit = true;
     },
+    cancelEdit: function() {
+      // on cancel update click button hide form
+      this.edit = false;
+    },
     deleteTodo: function(id) {
+      // on click delete icon dispatch delete action
       this.removeTodo(id);
     }
   }

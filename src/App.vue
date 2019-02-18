@@ -7,6 +7,7 @@
 </template>
 
 <script>
+// imports
 import Navigation from "./components/Navigation";
 export default {
   components: {
