@@ -1,6 +1,6 @@
 <template>
   <!-- nav html -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <router-link to="/" class="nav-brand">Todos Web App</router-link>
     <button
       class="navbar-toggler"
@@ -30,12 +30,7 @@
           <router-link to="/todos" class="nav-link">Todos</router-link>
         </li>
         <li class="nav-item">
-          <span
-            class="nav-link"
-            style="cursor:pointer"
-            v-on:click="logMeOutPlease"
-            >Logout</span
-          >
+          <span class="nav-link" style="cursor:pointer" v-on:click="logMeOutPlease">Logout</span>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto" v-if="!loginAuthenticated">

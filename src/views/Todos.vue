@@ -112,7 +112,9 @@ export default {
       this.edit = true;
     },
     cancelEdit: function() {
-      // on cancel update click button hide form
+      // on cancel update click button, set properties to empty strings and hide form
+      this.todo = "";
+      this.index = "";
       this.edit = false;
     },
     deleteTodo: function(id) {
