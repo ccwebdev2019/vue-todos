@@ -6,7 +6,7 @@ A web app to keep track of your daily todo tasks. You can create, read, update a
 
 HTML, CSS, Javascript, Vue, Vue Router, Vuex, Express, Mongoose
 
-## Project setup
+### Project setup
 
 ```
 npm install
